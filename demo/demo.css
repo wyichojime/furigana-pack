@@ -1,107 +1,165 @@
+/* 色はホームページ（wyichojime.com）に合わせる。暗い配色が基本で、明るい配色を選んでいる端末では紙の色に寄せる */
 :root {
-  --bg: #fbfaf7;
-  --fg: #1f1d1a;
-  --muted: #6b665e;
-  --line: #ddd8cf;
-  --accent: #2f6f62;
-  --panel: #ffffff;
-  --rt: #4a5b8c;
-  color-scheme: light;
+  --bg: #161514;
+  --panel: #1e1c1b;
+  --fg: #ece8e1;
+  --muted: #a39d93;
+  --line: #34312d;
+  --link: #f08a8a;
+  --accent: #d24b57;
+  --button: #b83e4a; /* 白い文字が読める濃さ */
+  --rt: #f08a8a;
+  --error: #ff8a7a;
+  color-scheme: dark;
 }
-@media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: light) {
   :root {
-    --bg: #161514;
-    --fg: #ece8e1;
-    --muted: #a39d93;
-    --line: #3a3733;
-    --accent: #7cc3b2;
-    --panel: #1f1e1c;
-    --rt: #a9b8e8;
-    color-scheme: dark;
+    --bg: #f7f4ef;
+    --panel: #fffdfa;
+    --fg: #1f1d1a;
+    --muted: #6b665e;
+    --line: #ddd6cc;
+    --link: #b3323f;
+    --accent: #d24b57;
+    --button: #b83e4a;
+    --rt: #b3323f;
+    --error: #b0281f;
+    color-scheme: light;
   }
 }
 * { box-sizing: border-box; }
 body {
   margin: 0 auto;
-  max-width: 52rem;
-  padding: 1.5rem 1rem 3rem;
+  max-width: 48rem;
+  padding: 3rem 1rem 4rem;
   background: var(--bg);
   color: var(--fg);
   font-family: system-ui, "Hiragino Sans", "Noto Sans JP", "Yu Gothic UI", sans-serif;
   line-height: 1.7;
 }
-h1 { font-size: 1.6rem; margin: 0 0 .5rem; }
-.lead { margin: 0 0 .25rem; }
-.note { margin: 0 0 .25rem; color: var(--muted); font-size: .9rem; }
-.en { margin: 0 0 1.5rem; color: var(--muted); font-size: .9rem; }
-.field-label { font-weight: 600; display: block; margin-bottom: .25rem; }
+a { color: var(--link); text-decoration: none; }
+a:hover, a:focus-visible { text-decoration: underline; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+/* 見出し（ホームページの h1・.sub と同じ形） */
+.site { margin-bottom: 1.25rem; }
+h1 { font-size: 1.75rem; margin: 0; letter-spacing: .05em; }
+.sub { margin: 0; color: var(--muted); font-size: .9rem; }
+.intro { margin-bottom: 2rem; }
+.lead { margin: 0 0 .5rem; }
+.note, .en { margin: 0 0 .35rem; color: var(--muted); font-size: .85rem; }
+
+/* 区切りの見出し（ホームページの h2 と同じ形） */
+h2 {
+  font-size: .85rem;
+  font-weight: 600;
+  color: var(--muted);
+  letter-spacing: .1em;
+  margin: 0 0 .75rem;
+  padding-bottom: .25rem;
+  border-bottom: 2px solid var(--accent);
+}
+h2 label { cursor: inherit; }
+.block { margin-bottom: 2.25rem; }
+
 textarea {
+  display: block;
   width: 100%;
-  padding: .75rem;
+  padding: .75rem .9rem;
   border: 1px solid var(--line);
   border-radius: .5rem;
   background: var(--panel);
   color: var(--fg);
   font: inherit;
+  line-height: 1.8;
   resize: vertical;
 }
-.options { margin: .75rem 0; display: grid; gap: .5rem; }
-fieldset { border: 0; padding: 0; margin: 0; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
-legend { float: left; margin-right: .5rem; font-weight: 600; }
-.status { color: var(--muted); margin: .5rem 0 0; min-height: 1.7em; }
-.status.error { color: #c0392b; }
-@media (prefers-color-scheme: dark) {
-  .status.error { color: #ff8a7a; } /* 暗い背景でも読める濃さ */
+textarea:focus-visible { outline: none; border-color: var(--accent); box-shadow: 0 0 0 1px var(--accent); }
+
+/* 振り仮名の範囲（2 つから選ぶ切り替え） */
+.options { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: .5rem 1rem; margin-top: .75rem; }
+fieldset { border: 0; padding: 0; margin: 0; }
+.segmented { display: inline-flex; align-items: center; gap: .6rem; }
+.segmented legend { float: left; font-size: .9rem; color: var(--muted); }
+.segmented label { position: relative; cursor: pointer; }
+.segmented input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
+.segmented span {
+  display: inline-block;
+  padding: .25rem .9rem;
+  border: 1px solid var(--line);
+  font-size: .9rem;
 }
-.stats { margin: 0 0 .75rem; color: var(--muted); font-size: .9rem; min-height: 1.5em; }
-.tabs { display: flex; gap: .25rem; border-bottom: 1px solid var(--line); }
+.segmented label:first-of-type span { border-radius: .3rem 0 0 .3rem; }
+.segmented label:last-of-type span { border-radius: 0 .3rem .3rem 0; margin-left: -.6rem; border-left: 0; }
+.segmented input:checked + span { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+.segmented input:focus-visible + span { outline: 2px solid var(--accent); outline-offset: 2px; }
+.stats { margin: 0; color: var(--muted); font-size: .85rem; min-height: 1.5em; }
+.status { color: var(--muted); margin: .5rem 0 0; font-size: .9rem; }
+.status:empty { display: none; }
+.status.error { color: var(--error); }
+.reload { margin-left: .5rem; font: inherit; }
+
+/* 表示・青空文庫形式・HTML の切り替え */
+.tabs { display: flex; gap: 1.25rem; margin-bottom: .75rem; }
 .tabs button {
-  border: 1px solid transparent;
-  border-bottom: 0;
+  border: 0;
+  border-bottom: 2px solid transparent;
   background: none;
   color: var(--muted);
-  padding: .5rem .9rem;
-  border-radius: .5rem .5rem 0 0;
+  padding: .25rem 0;
   font: inherit;
+  font-size: .95rem;
   cursor: pointer;
 }
-.tabs button[aria-selected="true"] { color: var(--fg); border-color: var(--line); background: var(--panel); font-weight: 600; }
-[role="tabpanel"] { padding-top: .75rem; }
+.tabs button:hover { color: var(--fg); }
+.tabs button[aria-selected="true"] { color: var(--fg); border-bottom-color: var(--link); font-weight: 600; }
 .view {
-  padding: 1rem;
+  padding: 1rem 1.1rem;
   border: 1px solid var(--line);
   border-radius: .5rem;
   background: var(--panel);
   white-space: pre-wrap;
-  line-height: 2.2;
+  line-height: 2.3;
   overflow-wrap: anywhere;
 }
 rt { color: var(--rt); font-size: .55em; }
-.hint { margin: 0 0 .5rem; color: var(--muted); font-size: .9rem; }
+.hint { margin: 0 0 .5rem; color: var(--muted); font-size: .85rem; }
 .copy {
-  margin-top: .5rem;
-  padding: .45rem 1rem;
+  margin-top: .6rem;
+  padding: .4rem 1.2rem;
   border: 0;
-  border-radius: .5rem;
-  background: var(--accent);
-  color: var(--bg);
+  border-radius: .3rem;
+  background: var(--button);
+  color: #fff;
   font: inherit;
+  font-size: .9rem;
+  font-weight: 600;
   cursor: pointer;
 }
-.copied { color: var(--accent); min-height: 1.7em; margin: .25rem 0 0; }
-.reload { margin-left: .5rem; font: inherit; }
-footer { margin-top: 2.5rem; padding-top: 1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
-footer a { color: var(--accent); }
-.download { margin-top: 2.5rem; }
-.download h2 { font-size: 1.2rem; margin: 0 0 .5rem; }
-.download ol { padding-left: 1.5rem; }
-.download a { color: var(--accent); }
-.download a.button {
-  display: inline-block;
-  padding: .45rem 1rem;
+.copy:hover { background: var(--accent); }
+.copied { color: var(--link); min-height: 1.7em; margin: .25rem 0 0; font-size: .9rem; }
+
+/* 足元（説明 → 最後に「ライセンス」と「作った人／更新日」の 1 行） */
+footer { margin-top: 2.5rem; padding-top: 1.1rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; line-height: 1.6; }
+footer p { margin: 0 0 .5rem; }
+.colophon { display: flex; flex-wrap: wrap; justify-content: space-between; gap: .25rem 1rem; margin-top: .9rem; opacity: .8; }
+
+/* ライセンスのページ（licenses.html） */
+.back { margin: 0 0 1.5rem; font-size: .9rem; }
+.licenses h3 { font-size: 1rem; margin: 1.25rem 0 .4rem; }
+.licenses h2 + h3 { margin-top: 0; }
+.licenses dl { display: grid; grid-template-columns: max-content 1fr; gap: .15rem 1rem; margin: 0; font-size: .9rem; }
+.licenses dt { color: var(--muted); }
+.licenses dd { margin: 0; }
+.licenses details { margin-top: .6rem; font-size: .9rem; }
+.licenses summary { cursor: pointer; color: var(--link); }
+.licenses pre {
+  margin: .5rem 0 0;
+  padding: .75rem .9rem;
+  border: 1px solid var(--line);
   border-radius: .5rem;
-  background: var(--accent);
-  color: var(--bg);
-  text-decoration: none;
+  background: var(--panel);
+  font-size: .8rem;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
 }
-.meta { color: var(--muted); font-size: .9rem; margin-left: .5rem; white-space: nowrap; }

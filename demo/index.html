@@ -9,67 +9,64 @@
 <link rel="stylesheet" href="demo.css">
 </head>
 <body>
-<header>
+<header class="site">
   <h1>furigana-pack</h1>
+  <p class="sub">日本語の文章に振り仮名を付ける</p>
+</header>
+
+<div class="intro">
   <p class="lead">本文を貼ると、辞書（振り仮名パック）で振り仮名を付けます。読みが文脈で変わる語など、確度の低い語には付けません。</p>
   <p class="note">正確さの目安：付いた振り仮名から無作為に選んだ 3,982 か所を確かめたところ、正確さは約 99%（98.9〜99.15%）でした。</p>
   <p class="en" lang="en">furigana-pack: paste Japanese text to add furigana from a curated dictionary. Words whose reading is uncertain (e.g. it depends on context) are left without furigana. In a check of 3,982 randomly sampled readings, about 99% (98.9–99.15%) were correct. Everything runs in your browser.</p>
-</header>
+</div>
 
 <main>
-  <label class="field-label" for="input">本文</label>
-  <textarea id="input" rows="8" spellcheck="false">メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども邪悪に対しては、人一倍に敏感であった。きょう未明メロスは村を出発し、野を越え山越え、十里はなれた此のシラクスの市にやって来た。メロスには父も、母も無い。女房も無い。十六の、内気な妹と二人暮しだ。この妹は、村の或る律気な一牧人を、近々、花婿として迎える事になっていた。結婚式も間近かなのである。メロスは、それゆえ、花嫁の衣裳やら祝宴の御馳走やらを買いに、はるばる市にやって来たのだ。先ず、その品々を買い集め、それから都の大路をぶらぶら歩いた。メロスには竹馬の友があった。セリヌンティウスである。今は此のシラクスの市で、石工をしている。その友を、これから訪ねてみるつもりなのだ。久しく逢わなかったのだから、訪ねて行くのが楽しみである。</textarea>
-
-  <div class="options">
-    <fieldset>
-      <legend>振り仮名</legend>
-      <label><input type="radio" name="scope" value="all" checked> すべて</label>
-      <label><input type="radio" name="scope" value="difficult"> 難読語だけ</label>
-    </fieldset>
-  </div>
-
-  <p id="status" class="status" role="status">辞書を準備中…</p>
-  <p id="stats" class="stats"></p>
-
-  <div class="tabs" role="tablist">
-    <button type="button" role="tab" id="tab-view" aria-controls="pane-view" aria-selected="true">表示</button>
-    <button type="button" role="tab" id="tab-aozora" aria-controls="pane-aozora" aria-selected="false">青空文庫形式</button>
-    <button type="button" role="tab" id="tab-html" aria-controls="pane-html" aria-selected="false">HTML</button>
-  </div>
-  <section id="pane-view" role="tabpanel" aria-labelledby="tab-view">
-    <div id="view" class="view"></div>
+  <section class="block" aria-labelledby="input-title">
+    <h2 id="input-title"><label for="input">本文</label></h2>
+    <textarea id="input" rows="8" spellcheck="false">メロスは激怒した。必ず、かの邪智暴虐の王を除かなければならぬと決意した。メロスには政治がわからぬ。メロスは、村の牧人である。笛を吹き、羊と遊んで暮して来た。けれども邪悪に対しては、人一倍に敏感であった。きょう未明メロスは村を出発し、野を越え山越え、十里はなれた此のシラクスの市にやって来た。メロスには父も、母も無い。女房も無い。十六の、内気な妹と二人暮しだ。この妹は、村の或る律気な一牧人を、近々、花婿として迎える事になっていた。結婚式も間近かなのである。メロスは、それゆえ、花嫁の衣裳やら祝宴の御馳走やらを買いに、はるばる市にやって来たのだ。先ず、その品々を買い集め、それから都の大路をぶらぶら歩いた。メロスには竹馬の友があった。セリヌンティウスである。今は此のシラクスの市で、石工をしている。その友を、これから訪ねてみるつもりなのだ。久しく逢わなかったのだから、訪ねて行くのが楽しみである。</textarea>
+    <div class="options">
+      <fieldset class="segmented">
+        <legend>振り仮名</legend>
+        <label><input type="radio" name="scope" value="all" checked><span>すべて</span></label>
+        <label><input type="radio" name="scope" value="difficult"><span>難読語だけ</span></label>
+      </fieldset>
+      <p id="stats" class="stats"></p>
+    </div>
+    <p id="status" class="status" role="status">辞書を準備中…</p>
   </section>
-  <section id="pane-aozora" role="tabpanel" aria-labelledby="tab-aozora" hidden>
-    <p class="hint">｜漢字《かんじ》の形。多くの小説投稿サイトのルビの書き方と同じです。</p>
-    <textarea id="aozora" rows="8" readonly></textarea>
-    <button type="button" class="copy" data-copy="aozora">コピー</button>
-  </section>
-  <section id="pane-html" role="tabpanel" aria-labelledby="tab-html" hidden>
-    <textarea id="html" rows="8" readonly></textarea>
-    <button type="button" class="copy" data-copy="html">コピー</button>
-  </section>
-  <p id="copied" class="copied" role="status"></p>
 
-  <section class="download" aria-labelledby="download-title">
-    <h2 id="download-title">振り仮名パックのダウンロード</h2>
-    <p>このページで使っている辞書です。Scenario Snip の振り仮名辞書に読み込んで使えます。</p>
-    <p><a class="button" href="data/ruby-pack.json" download="ruby-pack.json">ruby-pack.json をダウンロード</a> <span class="meta">版 %PACK_VERSION%・%PACK_MB% MB</span></p>
-    <ol>
-      <li>Scenario Snip の「振り仮名」ダイアログを開きます。</li>
-      <li>「インポート」ボタンでファイルを選ぶか、ダイアログへドラッグ＆ドロップします。</li>
-    </ol>
-    <p class="hint">Scenario Snip v2.6.1 以降で使えます。一部の語は v2.7 以降で付きます。</p>
-    <p>CC BY-SA 4.0 で公開しています。配布・改変するときは<a href="data/LICENSE.txt">利用条件</a>を確かめてください。プログラムから使うときは、ライブラリ <a href="https://github.com/wyichojime/furigana-pack">furigana-pack</a>（JavaScript・C#・Python）を使えます。</p>
+  <section class="block" aria-labelledby="result-title">
+    <h2 id="result-title">結果</h2>
+    <div class="tabs" role="tablist" aria-labelledby="result-title">
+      <button type="button" role="tab" id="tab-view" aria-controls="pane-view" aria-selected="true">表示</button>
+      <button type="button" role="tab" id="tab-aozora" aria-controls="pane-aozora" aria-selected="false">青空文庫形式</button>
+      <button type="button" role="tab" id="tab-html" aria-controls="pane-html" aria-selected="false">HTML</button>
+    </div>
+    <div id="pane-view" role="tabpanel" aria-labelledby="tab-view">
+      <div id="view" class="view"></div>
+    </div>
+    <div id="pane-aozora" role="tabpanel" aria-labelledby="tab-aozora" hidden>
+      <p class="hint">｜漢字《かんじ》の形。多くの小説投稿サイトのルビの書き方と同じです。</p>
+      <textarea id="aozora" rows="8" readonly></textarea>
+      <button type="button" class="copy" data-copy="aozora">コピー</button>
+    </div>
+    <div id="pane-html" role="tabpanel" aria-labelledby="tab-html" hidden>
+      <textarea id="html" rows="8" readonly></textarea>
+      <button type="button" class="copy" data-copy="html">コピー</button>
+    </div>
+    <p id="copied" class="copied" role="status"></p>
   </section>
 </main>
 
 <footer>
-  <p>入力した本文はブラウザの中だけで処理し、どこにも送信しません。ページの閲覧数だけを Cloudflare Web Analytics で数えています（Cookie は使いません）。</p>
+  <p>入力した本文はブラウザの中だけで処理し、どこにも送信しません。</p>
   <p>難読語＝常用漢字表に無い漢字を含む語。常用漢字だけで書ける読みにくい語（熟字訓など）は対象外です。</p>
-  <p>振り仮名パック © 2026 wyichojime（<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja">CC BY-SA 4.0</a>、<a href="data/LICENSE.txt">利用条件</a>）。JMdict/JMnedict/KANJIDIC2 © <a href="https://www.edrdg.org/edrdg/licence.html">EDRDG</a>（<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.ja">CC BY-SA 4.0</a>）を利用。コードは MIT License。</p>
-  <p>常用漢字の一覧は Unicode Unihan（Unicode License V3）から作成。</p>
-  <p>例文：太宰治『走れメロス』（<a href="https://www.aozora.gr.jp/cards/000035/card1567.html">青空文庫</a>）</p>
-  <p>振り仮名の照合は、TRPG シナリオのツール <a href="https://wyi.booth.pm/">Scenario Snip</a> の振り仮名機能と同じです。</p>
+  <p>ライブラリ（JavaScript・C#・Python）は <a href="https://github.com/wyichojime/furigana-pack">GitHub</a> で公開しています。</p>
+  <!-- 日付はビルド時に書き換わる（scripts/build-demo.mjs）。 -->
+  <p class="colophon">
+    <a href="licenses.html">ライセンス</a>
+    <span><a href="https://wyichojime.com/">wyichojime</a> ／ <span id="updated">%UPDATED%</span> 更新</span>
+  </p>
 </footer>
 <script src="demo.js"></script>
 </body>

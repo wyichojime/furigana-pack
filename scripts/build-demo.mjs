@@ -1,5 +1,5 @@
 // Web デモの配信物を dist-demo/ に組み立てる。main.ts・worker.ts を esbuild で（ライブラリのソースごと）束ね、
-// 画面・パック・パックのライセンス・_headers（Cloudflare のヘッダー定義）・robots.txt を置く。
+// 画面・パック（worker.js が読む）・パックのライセンス・_headers（Cloudflare のヘッダー定義）・robots.txt を置く。
 //   node scripts/build-demo.mjs              … ステージング用（検索に載せない）
 //   node scripts/build-demo.mjs --production … 本番（furigana.wyichojime.com）用
 import * as esbuild from 'esbuild';
@@ -8,7 +8,7 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const CSP =
-  "default-src 'none'; script-src 'self' https://static.cloudflareinsights.com; style-src 'self'; img-src 'self' data:; connect-src 'self' https://cloudflareinsights.com; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
+  "default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self'; worker-src 'self'; object-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'";
 
 const production = process.argv.includes('--production');
 const lib = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
@@ -29,14 +29,12 @@ await esbuild.build({
   banner: { js: '/*! furigana-pack demo | MIT License | Copyright (c) 2026 wyichojime */' },
 });
 const packPath = path.join(lib, 'data', 'ruby-pack.json');
-const packVersion = JSON.parse(fs.readFileSync(packPath, 'utf8')).pack.version;
-const packMB = (fs.statSync(packPath).size / 1024 / 1024).toFixed(1);
-const html = fs
-  .readFileSync(path.join(lib, 'demo', 'index.html'), 'utf8')
-  .replace('%CSP%', CSP)
-  .replaceAll('%PACK_VERSION%', packVersion)
-  .replaceAll('%PACK_MB%', packMB);
-fs.writeFileSync(path.join(out, 'index.html'), html);
+// 足元の「更新」の日付は、組み立てた日（日本時間）
+const updated = new Date(Date.now() + 9 * 3600_000).toISOString().slice(0, 10);
+for (const page of ['index.html', 'licenses.html']) {
+  const html = fs.readFileSync(path.join(lib, 'demo', page), 'utf8').replace('%CSP%', CSP).replace('%UPDATED%', updated);
+  fs.writeFileSync(path.join(out, page), html);
+}
 fs.copyFileSync(path.join(lib, 'demo', 'demo.css'), path.join(out, 'demo.css'));
 fs.copyFileSync(packPath, path.join(out, 'data', 'ruby-pack.json'));
 // ライセンスは .txt で置く（拡張子が無いとブラウザが表示せずにダウンロードするため）
