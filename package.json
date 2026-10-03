@@ -1,0 +1,56 @@
+{
+  "name": "furigana-pack",
+  "version": "0.1.0",
+  "private": true,
+  "license": "(MIT AND CC-BY-SA-4.0)",
+  "author": "wyichojime",
+  "description": "日本語の本文に、辞書（振り仮名パック）で振り仮名を付ける",
+  "type": "module",
+  "main": "./dist/furigana-pack.mjs",
+  "types": "./dist/types/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/types/index.d.ts",
+      "import": "./dist/furigana-pack.mjs",
+      "default": "./dist/furigana-pack.mjs"
+    },
+    "./global": {
+      "types": "./types/global.d.ts",
+      "default": "./dist/furigana-pack.global.js"
+    },
+    "./data/*": "./data/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "data",
+    "!data/compiled",
+    "types",
+    "LICENSE"
+  ],
+  "scripts": {
+    "typecheck": "tsc --noEmit",
+    "typecheck:consumer": "npm run build && tsc -p tests/types/tsconfig.json",
+    "test": "npm run build && vitest run",
+    "build": "node scripts/build.mjs && tsc -p tsconfig.build.json",
+    "conformance:make": "node scripts/make-conformance.mjs",
+    "conformance:packs": "npm run build && node scripts/make-pack-conformance.mjs",
+    "conformance:compiled": "npm run build && node scripts/make-compiled-cases.mjs",
+    "compile:data": "npm run build && node scripts/compile-data.mjs",
+    "test:csharp": "dotnet test csharp/FuriganaPack.sln",
+    "test:python": "python -m unittest discover -s python/tests -t python",
+    "compile:check": "npm run build && node scripts/compile-data.mjs --check",
+    "demo:build": "node scripts/build-demo.mjs",
+    "demo:serve": "npm run demo:build && node scripts/serve-demo.mjs",
+    "demo:deploy:staging": "node scripts/deploy-demo.mjs staging",
+    "demo:deploy:production": "node scripts/deploy-demo.mjs production",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.5",
+    "esbuild": "0.28.1",
+    "typescript": "6.0.3",
+    "vitest": "^5.0.1",
+    "wrangler": "^4.147.0"
+  }
+}

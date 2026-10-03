@@ -1,0 +1,17 @@
+// Web デモを配る Worker（静的ファイル dist-demo/ だけ）。公開は scripts/deploy-demo.mjs。
+//   本番: furigana-pack（furigana.wyichojime.com）
+//   ステージング: furigana-pack-dev（workers.dev。Cloudflare Access で作者だけが見られる）
+{
+  "name": "furigana-pack",
+  "compatibility_date": "2026-10-01",
+  "assets": { "directory": "../dist-demo" },
+  "routes": [{ "pattern": "furigana.wyichojime.com", "custom_domain": true }],
+  "workers_dev": false,
+  "env": {
+    "staging": {
+      "name": "furigana-pack-dev",
+      "routes": [],
+      "workers_dev": true
+    }
+  }
+}

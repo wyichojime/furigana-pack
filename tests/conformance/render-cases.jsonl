@@ -1,0 +1,15 @@
+{"id":"basic","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"漢字と本文","aozora":"｜漢字《かんじ》と｜本文《ほんぶん》","html":"<ruby>漢字<rt>かんじ</rt></ruby>と<ruby>本文<rt>ほんぶん</rt></ruby>"}
+{"id":"reading-aozora-marks","dict":[{"text":"漢字","reading":"かんじ》｜偽《にせ"}],"text":"漢字です","aozora":"漢字です","html":"<ruby>漢字<rt>かんじ》｜偽《にせ</rt></ruby>です"}
+{"id":"reading-halfwidth-bar","dict":[{"text":"漢字","reading":"かん|じ"}],"text":"漢字です","aozora":"漢字です","html":"<ruby>漢字<rt>かん|じ</rt></ruby>です"}
+{"id":"reading-newline","dict":[{"text":"漢字","reading":"かん\nじ"}],"text":"漢字です","aozora":"漢字です","html":"<ruby>漢字<rt>かん\nじ</rt></ruby>です"}
+{"id":"base-has-bar","dict":[{"text":"a｜b","reading":"えーびー"}],"text":"xa｜bx","aozora":"xa｜bx","html":"x<ruby>a｜b<rt>えーびー</rt></ruby>x"}
+{"id":"existing-explicit","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"｜本文《ほんぶん》と漢字","aozora":"｜本文《ほんぶん》と｜漢字《かんじ》","html":"｜<ruby>本文<rt>ほんぶん</rt></ruby>《ほんぶん》と<ruby>漢字<rt>かんじ</rt></ruby>"}
+{"id":"existing-explicit-halfwidth","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"|本文《ほんぶん》と漢字","aozora":"|本文《ほんぶん》と｜漢字《かんじ》","html":"|<ruby>本文<rt>ほんぶん</rt></ruby>《ほんぶん》と<ruby>漢字<rt>かんじ</rt></ruby>"}
+{"id":"existing-implicit","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"本文《てきすと》と漢字","aozora":"本文《てきすと》と｜漢字《かんじ》","html":"<ruby>本文<rt>ほんぶん</rt></ruby>《てきすと》と<ruby>漢字<rt>かんじ</rt></ruby>"}
+{"id":"existing-implicit-kanji-run","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"原本文《げんぽんぶん》と漢字","aozora":"原本文《げんぽんぶん》と｜漢字《かんじ》","html":"原<ruby>本文<rt>ほんぶん</rt></ruby>《げんぽんぶん》と<ruby>漢字<rt>かんじ</rt></ruby>"}
+{"id":"existing-implicit-surrogate-run","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"漢字𠮷《かんじよし》と漢字","aozora":"漢字𠮷《かんじよし》と｜漢字《かんじ》","html":"<ruby>漢字<rt>かんじ</rt></ruby>𠮷《かんじよし》と<ruby>漢字<rt>かんじ</rt></ruby>"}
+{"id":"existing-reading-has-word","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"｜カンジ《漢字》あ《本文》漢字","aozora":"｜カンジ《漢字》あ《本文》｜漢字《かんじ》","html":"｜カンジ《<ruby>漢字<rt>かんじ</rt></ruby>》あ《<ruby>本文<rt>ほんぶん</rt></ruby>》<ruby>漢字<rt>かんじ</rt></ruby>"}
+{"id":"existing-nested-bar","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"｜あ｜本文《ほんぶん》漢字","aozora":"｜あ｜本文《ほんぶん》｜漢字《かんじ》","html":"｜あ｜<ruby>本文<rt>ほんぶん</rt></ruby>《ほんぶん》<ruby>漢字<rt>かんじ</rt></ruby>"}
+{"id":"existing-implicit-extra-close","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"本文《と漢字》》の","aozora":"本文《と漢字》》の","html":"<ruby>本文<rt>ほんぶん</rt></ruby>《と<ruby>漢字<rt>かんじ</rt></ruby>》》の"}
+{"id":"lone-bar-is-text","dict":[{"text":"漢字","reading":"かんじ"},{"text":"本文","reading":"ほんぶん"}],"text":"｜の漢字","aozora":"｜の｜漢字《かんじ》","html":"｜の<ruby>漢字<rt>かんじ</rt></ruby>"}
+{"id":"surrogate-word","dict":[{"text":"𠮷","reading":"よし"}],"text":"𠮷を見る","aozora":"｜𠮷《よし》を見る","html":"<ruby>𠮷<rt>よし</rt></ruby>を見る"}

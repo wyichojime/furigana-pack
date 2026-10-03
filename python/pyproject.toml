@@ -1,0 +1,15 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "furigana-pack"
+version = "0.1.0"
+description = "日本語の本文に、振り仮名パック（解釈済みの形）で振り仮名を付ける"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "wyichojime" }]
+dependencies = []
+
+[tool.setuptools]
+packages = ["furigana_pack"]
