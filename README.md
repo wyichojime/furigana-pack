@@ -120,6 +120,7 @@ npm test                    # ビルドとテスト
 npm run typecheck
 npm run test:csharp
 npm run test:python
+npm run security            # 依存パッケージの脆弱性を調べる（npm・NuGet）
 npm run demo:serve          # 試用ページを http://localhost:8787/ で開く
 npm run demo:deploy:production  # 試用ページを公開する（コミット済みの内容だけ）
 ```
@@ -133,6 +134,8 @@ npm run conformance:packs   # テストの期待値を作り直す
 npm run compile:data        # data/compiled/ を作り直す
 npm test
 ```
+
+GitHub Actions（`.github/workflows/ci.yml`）が、main への push と毎週月曜に、テストと `npm run security` を流します。依存の更新は Dependabot が月に 1 回 PR にします。脆弱性の報告先は [SECURITY.md](SECURITY.md) です。
 
 コード中の `RUBY-015` などは、Scenario Snip の振り仮名機能の仕様番号です。
 

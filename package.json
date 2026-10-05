@@ -39,6 +39,7 @@
     "compile:data": "npm run build && node scripts/compile-data.mjs",
     "test:csharp": "dotnet test csharp/FuriganaPack.sln",
     "test:python": "python -m unittest discover -s python/tests -t python",
+    "security": "node scripts/security-check.mjs",
     "compile:check": "npm run build && node scripts/compile-data.mjs --check",
     "demo:build": "node scripts/build-demo.mjs",
     "demo:serve": "npm run demo:build && node scripts/serve-demo.mjs",
