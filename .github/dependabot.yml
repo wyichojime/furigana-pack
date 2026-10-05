@@ -6,6 +6,10 @@ updates:
     directory: /
     schedule:
       interval: monthly
+    ignore:
+      # 型は動かしている Node（22）に合わせる。Node を上げるときに手で上げる
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
     groups:
       dev:
         patterns: ['*']

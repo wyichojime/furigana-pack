@@ -59,7 +59,7 @@ describe('解釈済みの形（data/compiled）', () => {
 
   it('見出しの BOM・行末の CR・空行は許す', () => {
     const group = '{"matchText":"漢字","priority":0,"order":0,"forms":[{"segments":[[0,2,"かんじ"]]}]}';
-    const m = matcherFromCompiled(['\ufeff' + HEAD.replace('}', ',"groupCount":1}'), group + '\r', '']);
+    const m = matcherFromCompiled(['\ufeff' + HEAD.slice(0, -1) + ',"groupCount":1}', group + '\r', '']);
     expect(toTuples(matchRanges(m, '漢字'))).toEqual([[0, 2, 'かんじ']]);
   });
 });
