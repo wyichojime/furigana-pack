@@ -1,0 +1,49 @@
+振り仮名パック（Furigana Pack data）
+
+Copyright (c) 2026 wyichojime
+
+このディレクトリ（data/）のデータ（ruby-pack.json と、
+それを解釈済みの形にした compiled/ 以下のファイル）は、
+クリエイティブ・コモンズ 表示 - 継承 4.0 国際（CC BY-SA 4.0）で提供します。
+
+The data in this directory (ruby-pack.json and the
+derived files under compiled/) is licensed under the Creative Commons
+Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).
+
+  https://creativecommons.org/licenses/by-sa/4.0/
+  https://creativecommons.org/licenses/by-sa/4.0/legalcode.ja
+
+■ 利用するときの条件（概要。正式な条件は上記の利用許諾を参照）
+- 商用を含め、自由に利用・複製・再配布・改変できます。
+- クレジット（下の表示例）と、このライセンスへのリンクを示してください。
+- 改変したデータを配布するときは、同じ CC BY-SA 4.0 で公開してください。
+- パックを読み込んで振り仮名を付けるアプリ・ソフトウェアのコード自体は、
+  CC BY-SA の対象になりません（コードは任意のライセンスで構いません）。
+
+■ クレジットの表示例
+  振り仮名パック © 2026 wyichojime（CC BY-SA 4.0）
+  JMdict / JMnedict / KANJIDIC2 © Electronic Dictionary Research and Development Group（CC BY-SA 4.0）を利用
+
+  Furigana Pack (c) 2026 wyichojime, CC BY-SA 4.0.
+  Uses JMdict / JMnedict / KANJIDIC2 (c) Electronic Dictionary Research and
+  Development Group, CC BY-SA 4.0.
+
+■ 作成に使った資料
+語と読みは、各資料のデータを写したものではなく、data/README.md に書いた手順で選んだ
+「表記と読みの組」です。作成時の照合・解析に次の資料を使いました（このデータには
+各資料の本体を含みません）。
+
+- JMdict / JMnedict / KANJIDIC2: Electronic Dictionary Research and Development Group
+  （CC BY-SA 4.0。https://www.edrdg.org/）
+- UniDic（現代書き言葉 UniDic 2025.12）: 国立国語研究所（修正 BSD ライセンスを選択）
+- SudachiDict: Works Applications Co., Ltd.（Apache License 2.0）
+- 青空文庫（著作権の消滅した作品のテキスト）・Wikipedia 日本語版の本文: 出現の集計にのみ使用
+- 常用漢字表（平成 22 年内閣告示第 2 号）
+
+■ 名称について
+このライセンスは商標・名称の利用を許諾しません。改変したデータを配布するときは、
+CC BY-SA 4.0 が求めるとおり改変した旨を示し、作者（wyichojime）による公式の
+振り仮名パック（furigana-pack）と誤認される名前・説明で配布しないでください。
+
+■ 無保証
+データは現状のまま提供します。読みの正確さを含め、いかなる保証もしません。

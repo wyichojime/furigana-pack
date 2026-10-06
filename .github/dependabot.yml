@@ -1,0 +1,31 @@
+# 依存の更新を月に 1 回、種類ごとに 1 つの PR にまとめる（脆弱性の修正は Dependabot alerts で別に知らせが来る）。
+# ライブラリの利用者に届く実行時の依存は無い。ここで上がるのは開発用の道具（npm の devDependencies・テスト用の NuGet）と CI のアクションだけ。
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    ignore:
+      # 型は動かしている Node（22）に合わせる。Node を上げるときに手で上げる
+      - dependency-name: "@types/node"
+        update-types: ["version-update:semver-major"]
+    groups:
+      dev:
+        patterns: ['*']
+
+  - package-ecosystem: nuget
+    directory: /csharp
+    schedule:
+      interval: monthly
+    groups:
+      test:
+        patterns: ['*']
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      actions:
+        patterns: ['*']
