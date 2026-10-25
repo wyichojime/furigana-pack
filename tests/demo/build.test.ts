@@ -71,10 +71,11 @@ describe('demo:build', () => {
     expect(html).not.toContain('%PACK_');
   });
 
-  it('GitHub へのリンクがあり、まだ公開していない作者のホームページへはリンクしない', () => {
+  it('GitHub と作者のホームページへのリンクがある', () => {
     const html = read('index.html') + read('licenses.html');
     expect(html).toContain('<a href="https://github.com/wyichojime/furigana-pack">');
-    expect(html).not.toContain('https://wyichojime.com/');
+    expect(read('index.html')).toContain('<a href="https://wyichojime.com/">wyichojime</a>');
+    expect(read('licenses.html')).toContain('<a href="https://wyichojime.com/">wyichojime</a>');
   });
 
   it('ステージングは検索に載せない', () => {
