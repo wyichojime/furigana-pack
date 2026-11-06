@@ -1,6 +1,6 @@
 {
   "name": "furigana-pack",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "license": "(MIT AND CC-BY-SA-4.0)",
   "author": "wyichojime",
@@ -51,8 +51,8 @@
     "@types/node": "^22.20.5",
     "esbuild": "0.28.2",
     "typescript": "7.0.2",
-    "vitest": "^5.0.1",
-    "wrangler": "^4.152.0"
+    "vitest": "^5.0.5",
+    "wrangler": "^4.156.0"
   },
   "overrides": {
     "undici": "7.30.1"
